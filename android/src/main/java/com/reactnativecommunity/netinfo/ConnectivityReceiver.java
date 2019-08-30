@@ -8,7 +8,6 @@ package com.reactnativecommunity.netinfo;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import androidx.core.net.ConnectivityManagerCompat;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.WritableMap;
@@ -95,7 +94,7 @@ abstract class ConnectivityReceiver {
             details = new WritableNativeMap();
 
             boolean isConnectionExpensive =
-                    ConnectivityManagerCompat.isActiveNetworkMetered(getConnectivityManager());
+                    getConnectivityManager().isActiveNetworkMetered();
             details.putBoolean("isConnectionExpensive", isConnectionExpensive);
 
             if (mConnectionType.equals(ConnectionType.CELLULAR) && mCellularGeneration != null) {
